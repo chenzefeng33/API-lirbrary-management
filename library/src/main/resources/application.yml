@@ -1,0 +1,26 @@
+server:
+  port: 8089
+
+spring:
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://bj-cynosdbmysql-grp-2k057qd6.sql.tencentcdb.com:21284/lms?serverTimezone=UTC&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: test
+    password: Hrk2021123
+    initial-size: 10
+    max-active: 20
+    max-idle: 8
+    min-idle: 8
+
+  #Swagger配置
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# mybatis-plus配置
+mybatis-plus:
+  # xml文件位置
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名转换
