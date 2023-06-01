@@ -13,14 +13,14 @@ public class BorrowBookController {
     @Autowired
     public BorrowBookimpl borrowBookimpl;
 
-    @PutMapping("/{user_id}/{book_id}/return")
+    @PutMapping("returns/{user_id}/{book_id}")
     public R returnBook(@PathVariable("user_id") Integer user_id, @PathVariable("book_id") Integer book_id) {
         boolean tag = borrowBookimpl.returnBook(user_id, book_id);
         if(tag) return R.ok();
         else return R.error().message("请确认归还书籍信息");
     }
 
-    @PostMapping("/{user_id}/{book_id}/borrow")
+    @PutMapping("borrowings/{user_id}/{book_id}")
     public R borrowBook(@PathVariable("user_id") Integer user_id, @PathVariable("book_id") Integer book_id){
         boolean tag = false;
 //        try {
@@ -32,7 +32,7 @@ public class BorrowBookController {
         else return R.error();
     }
 
-    @PutMapping("/{user_id}/{book_id}/{score}/setScore")
+    @PutMapping("/scores/{user_id}/{book_id}/{score}")
     public R setScore(@PathVariable("book_id") Integer book_id, @PathVariable("user_id") Integer user_id, @PathVariable("score") Integer score) {
         boolean tag = borrowBookimpl.setScore(user_id, book_id, score);
         if(tag) return R.ok();
