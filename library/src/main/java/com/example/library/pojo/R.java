@@ -1,5 +1,6 @@
 package com.example.library.pojo;
 
+import com.example.library.pojo.ResultCode;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class R {
     public static R ok() {
         R r = new R();
         r.setSuccess(true);
-        r.setCode(ResultCode.SUCCESS);
+        r.setCode(com.example.library.pojo.ResultCode.SUCCESS);
         r.setMessage("成功");
         return r;
     }

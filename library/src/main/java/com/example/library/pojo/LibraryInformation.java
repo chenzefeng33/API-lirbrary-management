@@ -2,8 +2,8 @@ package com.example.library.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.springframework.stereotype.Component;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 /**
  * @description: 实体类

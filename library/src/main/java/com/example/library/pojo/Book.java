@@ -1,5 +1,4 @@
 package com.example.library.pojo;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Setter
 @Getter
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("book")

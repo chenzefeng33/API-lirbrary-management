@@ -4,10 +4,10 @@ server:
 spring:
   #数据库配置
   datasource:
-    url: jdbc:mysql://bj-cynosdbmysql-grp-2k057qd6.sql.tencentcdb.com:21284/lms?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/API?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: test
-    password: Hrk2021123
+    username: root
+    password: xiaoyu127
     initial-size: 10
     max-active: 20
     max-idle: 8
@@ -22,6 +22,6 @@ spring:
 mybatis-plus:
   # xml文件位置
   mapper-locations: classpath:mybatis/mapper/*.xml
-  type-aliases-package: com.example.library.pojo
+  type-aliases-package: com.example.com.example.library.pojo
   configuration:
     map-underscore-to-camel-case: true #开启驼峰命名转换

@@ -2,15 +2,12 @@ package com.example.library.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.library.pojo.Book;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-/**
- * @description: dao层
- * @author: 肖景方
- * @date: 5-31
- * @version: v1.0
- */
 @Mapper
 @Repository
 public interface BookDao extends BaseMapper<Book> {
@@ -19,4 +16,6 @@ public interface BookDao extends BaseMapper<Book> {
 
     @Update("update book set quantity = quantity + #{quantityNumber} where book_id = #{book_id}")
     public boolean updateQuantity(@Param("book_id") Integer book_id, @Param("quantityNumber") Integer quantityNumber);
+
+    int updateQuantityById(@Param("book_id") Integer book_id, @Param("quantityNumber") Integer quantityNumber);
 }
