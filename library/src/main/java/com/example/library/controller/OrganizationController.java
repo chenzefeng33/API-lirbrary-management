@@ -1,8 +1,8 @@
 package com.example.library.controller;
 
 import com.example.library.pojo.Organization;
-import com.example.library.pojo.R;
-import com.example.library.service.impl.Organizationimpl;
+import com.example.library.util.R;
+import com.example.library.service.impl.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/organization")
 public class OrganizationController {
+
     @Autowired
-    public Organizationimpl organizationimpl;
+    public OrganizationService organizationService;
+
     /**
      * 获取所有组织机构信息
      * @return
      */
     @GetMapping
     public R organization() {
-        List<Organization> list = organizationimpl.getOrganization();
+        List<Organization> list = organizationService.getOrganization();
 
         if(list.isEmpty()){
             return R.error();
@@ -33,7 +35,7 @@ public class OrganizationController {
 
     @GetMapping("/branch_id={branch_id}")
     public R organizationByBranchId(@PathVariable("branch_id") Integer branch_id){
-        List<Organization> list = organizationimpl.getOrganizationByBranchId(branch_id);
+        List<Organization> list = organizationService.getOrganizationByBranchId(branch_id);
         if(list == null){
             return R.error();
         }else {

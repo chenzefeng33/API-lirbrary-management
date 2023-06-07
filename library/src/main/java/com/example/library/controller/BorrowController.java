@@ -1,7 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.pojo.Borrow;
-import com.example.library.pojo.R;
+import com.example.library.util.R;
 import com.example.library.service.BorrowService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/reserve")
 public class BorrowController {
+
     @Autowired
     private BorrowService borrowService;
     

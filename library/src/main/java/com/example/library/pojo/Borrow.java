@@ -6,10 +6,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -19,6 +16,7 @@ import java.util.Date;
  * @date: 2023-06-06 09:40:33
  * @description: (Borrow)实体类
  */
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "预约表")
 @Data
 @Builder(toBuilder = true)

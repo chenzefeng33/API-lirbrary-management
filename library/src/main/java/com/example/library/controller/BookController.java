@@ -2,7 +2,7 @@ package com.example.library.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.library.pojo.Book;
-import com.example.library.pojo.R;
+import com.example.library.util.R;
 import com.example.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/books")
 public class BookController {
+
     @Autowired
     public BookService bookService;
 

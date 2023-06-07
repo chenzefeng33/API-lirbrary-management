@@ -1,8 +1,8 @@
 package com.example.library.controller;
 
 import com.example.library.pojo.HoldingStatistics;
-import com.example.library.pojo.R;
-import com.example.library.service.impl.HoldingStatisticsimpl;
+import com.example.library.service.HoldingStatisticsService;
+import com.example.library.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/holdingstatistics")
 public class HoldingStatisticsController {
+
     @Autowired
-    public HoldingStatisticsimpl holdingStatisticsimpl;
+    public HoldingStatisticsService holdingStatisticsService;
+
     /**
      * 获取所有馆藏统计信息
      * @return
      */
     @GetMapping
     public R holdingstatistics() {
-        List<HoldingStatistics> list = holdingStatisticsimpl.getHoldingStatistics();
+        List<HoldingStatistics> list = holdingStatisticsService.getHoldingStatistics();
 
         if(list.isEmpty()){
             return R.error();
@@ -33,7 +35,7 @@ public class HoldingStatisticsController {
 
     @GetMapping("book_id={book_id}")
     public R holdingstatisticsByBookId(@PathVariable("book_id") Integer book_id) {
-        List<HoldingStatistics> list = holdingStatisticsimpl.getHoldingStatisticsByBookId(book_id);
+        List<HoldingStatistics> list = holdingStatisticsService.getHoldingStatisticsByBookId(book_id);
 
         if(list == null){
             return R.error();
@@ -44,7 +46,7 @@ public class HoldingStatisticsController {
 
     @GetMapping("library_id={library_id}")
     public R holdingstatisticsByLibraryId(@PathVariable("library_id") Integer library_id) {
-        List<HoldingStatistics> list = holdingStatisticsimpl.getHoldingStatisticsByLibraryId(library_id);
+        List<HoldingStatistics> list = holdingStatisticsService.getHoldingStatisticsByLibraryId(library_id);
 
         if(list == null){
             return R.error();

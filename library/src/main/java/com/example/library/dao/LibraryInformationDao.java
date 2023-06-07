@@ -5,7 +5,6 @@ import com.example.library.pojo.LibraryInformation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -15,7 +14,6 @@ import java.util.List;
  * @date: 6-2
  */
 @Mapper
-@Repository
 public interface LibraryInformationDao extends BaseMapper<LibraryInformation> {
     @Select("select * from library_information")
     List<LibraryInformation> getLibraryInformation();
