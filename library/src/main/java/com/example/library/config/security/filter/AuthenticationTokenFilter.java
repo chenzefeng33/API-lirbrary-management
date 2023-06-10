@@ -2,11 +2,16 @@ package com.example.library.config.security.filter;
 
 import cn.hutool.core.util.StrUtil;
 import com.example.library.config.security.enums.TokenEnum;
-import com.example.library.config.security.user.PermitResource;
+import com.example.library.config.security.utils.PermitResource;
 import com.example.library.config.security.utils.RequestUtil;
 import com.example.library.config.security.utils.TokenUtil;
+import com.example.library.pojo.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author RuKunHe(jom4ker @ aliyun.com)
@@ -56,6 +62,14 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
                 throw new BadCredentialsException("AccessToken and RefreshToken are both invalid");
             }
         }
+
+        String username = TokenUtil.getAudience(accessToken);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(new User(username, null), null, new ArrayList<>());
+
+        // 新建 SecurityContext
+        SecurityContext context = SecurityContextHolder.createEmptyContext();
+        context.setAuthentication(authentication);
+        SecurityContextHolder.setContext(context);
 
         chain.doFilter(request, response);
     }

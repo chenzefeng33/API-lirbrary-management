@@ -1,6 +1,7 @@
 package com.example.library.config.security.utils;
 
 import cn.hutool.core.lang.Tuple;
+import cn.hutool.json.JSONArray;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.signers.JWTSigner;
 import cn.hutool.jwt.signers.JWTSignerUtil;
@@ -84,7 +85,8 @@ public class TokenUtil {
     }
 
     public static String getAudience(String jwt) {
-        return (String) JWT.of(jwt).getPayload(JWT.AUDIENCE);
+        System.out.println(((JSONArray) JWT.of(jwt).getPayload(JWT.AUDIENCE)).get(0).toString());
+        return ((JSONArray) JWT.of(jwt).getPayload(JWT.AUDIENCE)).get(0).toString();
     }
 
     public static boolean verify(String jwt) {

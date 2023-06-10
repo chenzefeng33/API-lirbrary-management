@@ -1,7 +1,7 @@
 package com.example.library.config.security.config;
 
 import com.example.library.config.security.exceptionHandler.SecurityAuthenticationEntryPoint;
-import com.example.library.config.security.user.PermitResource;
+import com.example.library.config.security.utils.PermitResource;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

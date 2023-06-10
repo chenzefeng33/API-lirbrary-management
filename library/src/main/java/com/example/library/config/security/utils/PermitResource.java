@@ -1,6 +1,8 @@
-package com.example.library.config.security.user;
+package com.example.library.config.security.utils;
 
+import cn.hutool.core.text.AntPathMatcher;
 import cn.hutool.core.util.StrUtil;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.io.Resource;
@@ -18,7 +20,9 @@ import java.util.Properties;
  * @version com.whms.framework.security.utils 0.0.1
  */
 @Component
+@AllArgsConstructor
 public class PermitResource {
+
     @SneakyThrows
     public List<String> getPermitList() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
@@ -55,9 +59,10 @@ public class PermitResource {
     }
 
     public boolean isPermit(String uri) {
+        AntPathMatcher matcher = new AntPathMatcher();
         List<String> whitelist = getPermitList();
         for (String pattern : whitelist) {
-            if (uri.matches(pattern)) {
+            if (matcher.match(pattern, uri)) {
                 return true;
             }
         }

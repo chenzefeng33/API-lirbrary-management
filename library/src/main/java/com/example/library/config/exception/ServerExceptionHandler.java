@@ -19,10 +19,4 @@ public class ServerExceptionHandler {
     public R handleException(ServerException ex) {
         return R.error(ex.getCode(), ex.getMsg());
     }
-
-    @ExceptionHandler(Exception.class)
-    public R handleException(Exception ex) {
-        log.error(ex.getMessage(), ex);
-        return R.error();
-    }
 }

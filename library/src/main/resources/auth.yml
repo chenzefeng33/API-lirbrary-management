@@ -2,3 +2,7 @@ auth:
   ignore_urls:
     - /user/login
     - /user/register
+#    - /swagger-ui.html
+#    - /v2/api-docs
+#    - /swagger-resources/**
+#    - /webjars/**
