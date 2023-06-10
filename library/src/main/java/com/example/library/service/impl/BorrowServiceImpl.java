@@ -5,6 +5,7 @@ import com.example.library.dao.BookDao;
 import com.example.library.dao.BorrowMapper;
 import com.example.library.pojo.Book;
 import com.example.library.pojo.Borrow;
+import com.example.library.service.BookService;
 import com.example.library.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Autowired
     private BookDao bookDao;
+
+    @Autowired
+    private BookService bookService;
     
     /**
      * 获取全部列表
@@ -66,7 +70,7 @@ public class BorrowServiceImpl implements BorrowService {
         //没有有库存并且写了预约时间
         if(bookDao.selectCount(queryWrapper)==0 && borrow.getReservationTime() !=null)return -2;
         if("待取书".equals(borrow.getStatus())){
-            bookDao.updateQuantityById(borrow.getBookId(),-1);
+            bookService.updateQuantity(borrow.getBookId(),-1);
         }
         if("排队中".equals(borrow.getStatus())){
             QueryWrapper<Borrow> wrapper = new QueryWrapper();
@@ -105,7 +109,7 @@ public class BorrowServiceImpl implements BorrowService {
                 borrowMapper.updateById(Borrow.builder().id(b.getId()).status("待取书").reservationTime(new Date()).build());
             }else{
                 //无排队借阅人员,直接释放库存+1
-                bookDao.updateQuantityById(borrow.getBookId(),1);
+                bookService.updateQuantity(borrow.getBookId(),1);
             }
         }
         return borrowMapper.updateById(Borrow.builder().id(borrow.getId()).score(borrow.getScore()).reservationTime(borrow.getReservationTime()).status(borrow.getStatus()).build());
@@ -135,7 +139,7 @@ public class BorrowServiceImpl implements BorrowService {
                 borrowMapper.updateById(Borrow.builder().id(b.getId()).status("带取书").reservationTime(new Date()).build());
             }else{
                 //无排队借阅人员,直接释放库存+1
-                bookDao.updateQuantityById(borrow.getBookId(),1);
+                bookService.updateQuantity(borrow.getBookId(),1);
             }
         }
         if("借阅中".equals(borrow.getStatus()) || "已归还".equals(borrow.getStatus())) return -1;
