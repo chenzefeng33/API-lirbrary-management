@@ -9,8 +9,6 @@ import java.util.Map;
 @Data
 public class R {
 
-    private Boolean success;
-
     private Integer code;
 
     private String message;
@@ -22,7 +20,6 @@ public class R {
 
     public static R res(ResultEnum resultEnum) {
         R r = new R();
-        r.setSuccess(false);
         r.setCode(resultEnum.getCode());
         r.setMessage(resultEnum.getMsg());
         return r;
@@ -30,7 +27,6 @@ public class R {
 
     public static R res(Integer code, String msg) {
         R r = new R();
-        r.setSuccess(false);
         r.setCode(code);
         r.setMessage(msg);
         return r;
@@ -49,11 +45,6 @@ public class R {
 
     public static R error(Integer code, String msg) {
         return res(code, msg);
-    }
-
-    public R success(Boolean success){
-        this.setSuccess(success);
-        return this;
     }
 
     public R message(String message){
