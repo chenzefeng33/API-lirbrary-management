@@ -14,6 +14,4 @@ public interface BookDao extends BaseMapper<Book> {
 
     @Update("update book set quantity = quantity + #{quantityNumber} where book_id = #{book_id}")
     boolean updateQuantity(@Param("book_id") Integer book_id, @Param("quantityNumber") Integer quantityNumber);
-
-    int updateQuantityById(@Param("book_id") Integer book_id, @Param("quantityNumber") Integer quantityNumber);
 }
